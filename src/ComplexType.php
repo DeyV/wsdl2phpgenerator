@@ -105,7 +105,7 @@ class ComplexType extends Type
 
             $comment = new PhpDocComment();
             $comment->setVar(PhpDocElementFactory::getVar($type, $name, ''));
- 
+
             if ($member->isArray()) {
                 $defaultValue = '[]';
             } elseif ($type === 'string') {
@@ -117,6 +117,7 @@ class ComplexType extends Type
             $var = new PhpVariable('protected', $name, $defaultValue, $comment);
             $this->class->addVariable($var);
 
+            continue;
             if (!$member->getNullable()) {
                 if ($type == '\DateTime') {
                     if ($this->config->get('constructorParamsDefaultToNull')) {
@@ -182,6 +183,8 @@ class ComplexType extends Type
             );
             $accessors[] = $setter;
         }
+
+        return;
 
         $constructor = new PhpFunction(
             'public',

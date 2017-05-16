@@ -220,8 +220,14 @@ class Validator
             case "hexbinary":
                 return 'string';
                 break;
-            case "datetime":
-                return  '\DateTime';
+//            case "datetime":
+//                return  '\DateTime';
+			case "datetime":
+			case "date":
+			case "time":
+			case "id":
+			case "idref":
+                return 'string';
                 break;
             default:
                 $typeName = self::validateNamingConvention($typeName);
